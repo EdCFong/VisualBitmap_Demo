@@ -1,0 +1,81 @@
+﻿<Window x:Class="VisualBitmap_Demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VisualBitmap_Demo"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="620" Width="500" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="PrintButton" Content="Print" Margin="300 20 20 20" FontSize="28" Click="PrintButton_Click"/>
+
+            <!-- Flow Document -->           
+            <FlowDocumentScrollViewer Grid.Row="1" Margin="0 0 0 20">
+                <FlowDocument x:Name="forPrint">
+                    <Section>
+                        
+                        
+                        <!-- Lorem Ipsum Header text-->                       
+                        <BlockUIContainer Margin="0 0 0 40">
+                            <StackPanel x:Name="Header">
+                                <TextBlock FontSize="42" Margin="30 10" FontFamily="MS UI Gothic">
+                                    Lorem Ipsum
+                                </TextBlock>
+                                <TextBlock Margin="15" FontFamily="High Tower Text" FontSize="16" LineStackingStrategy="BlockLineHeight" TextWrapping="Wrap">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consectetur
+                                    auctor dolor et semper
+                                </TextBlock>
+                            </StackPanel>
+                        </BlockUIContainer>
+
+
+
+                        <!-- Cartesian Chart -->
+                        <BlockUIContainer>
+                            <lvc:CartesianChart x:Name="ChartVisual" Series="{Binding SeriesCollection}" FontSize="10" LegendLocation="Top" MinHeight="240" Margin="15 0 15 15">
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis
+                                                 Title="Transacciones en el tiempo."
+                                                 Foreground="Black"
+                                                 LabelFormatter="{Binding Formatter}"
+                                                 MinValue="{Binding InitialDateTime.Ticks}">
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="Cantidad ($)"
+                                              Foreground="Black"/>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
+                        </BlockUIContainer>
+
+
+                        <BlockUIContainer>
+                            <StackPanel Grid.Row="2">
+                                <TextBlock Text="Image version of chart: " Margin="20"/>
+                                <StackPanel x:Name="Image_StackPanel"/>
+
+                            </StackPanel>
+                        </BlockUIContainer>
+
+                        
+                        
+                        
+                        
+
+                    </Section>
+                </FlowDocument>
+            </FlowDocumentScrollViewer>
+           
+            
+
+
+        </Grid>
+    </Grid>
+</Window>
